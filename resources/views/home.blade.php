@@ -7,7 +7,7 @@
     <div class="card-body">
         <h4>About me</h4>
         <p>
-            Hello, I develop with PHP since 2013~2014, started with webdesign few months before that.
+            Hello, I develop with PHP since 2003~2004, started with webdesign few months before that.
             <br/>I've worked with a vast kind of projects, since a simple CMS business website to medium port more complex ERP with customer control, finance and sellers interface.
         </p>
 
