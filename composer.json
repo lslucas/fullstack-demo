@@ -51,8 +51,8 @@
         ],
         "compile": [
             "chmod -R 777 storage",
-            "chmod 777 bootstrap/cache",
-            "@php artisan passport:keys"
+            "chmod 777 bootstrap/cache"
+            //,"@php artisan passport:keys"
         ]
     },
     "config": {
