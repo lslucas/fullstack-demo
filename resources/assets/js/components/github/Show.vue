@@ -23,10 +23,6 @@
 
             <div class="card-body">
                 <!-- Current Clients -->
-                <p class="mb-0" v-if="user.length === 0">
-                    This user has no info.
-                </p>
-
                 <table class="table table-borderless mb-0" v-if="user">
                     <tbody>
                         <tr>
@@ -66,13 +62,6 @@
             };
         },
 
-        /**
-         * Prepare the component (Vue 1.x).
-         */
-        ready() {
-            this.prepareComponent();
-        },
-
         created() {
             let uri = window.location.href.split('/')
             this.username = uri[uri.length-1]
@@ -82,21 +71,14 @@
          * Prepare the component (Vue 2.x).
          */
         mounted() {
-            this.prepareComponent();
+            this.getInfo();
         },
 
         methods: {
             /**
-             * Prepare the component.
+             * Get info of this user.
              */
-            prepareComponent() {
-                this.getUsers();
-            },
-
-            /**
-             * Get all of the OAuth clients for the user.
-             */
-            getUsers() {
+            getInfo() {
                 let config = {
                     headers: {
                         Authorization: 'Bearer ' + token,

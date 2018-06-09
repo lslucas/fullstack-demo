@@ -22,12 +22,8 @@
             </div>
 
             <div class="card-body">
-                <!-- Current Clients -->
-                <p class="mb-0" v-if="repos.data.length === 0">
-                    This user has no repos.
-                </p>
 
-                <table class="table table-borderless mb-0" v-if="repos.data.length > 0">
+                <table class="table table-borderless mb-0">
                     <thead>
                         <tr>
                             <th width='50px'>ID</th>
@@ -41,11 +37,9 @@
                             <td style="vertical-align: middle;">
                                 {{ repo.id }}
                             </td>
-
                             <td style="vertical-align: middle;">
                                 {{ repo.full_name }}
                             </td>
-
                             <td style="vertical-align: middle;">
                                 <a :href='repo.html_url' target='_blank'>{{ repo.html_url }}</a>
                             </td>
@@ -72,13 +66,6 @@
             };
         },
 
-        /**
-         * Prepare the component (Vue 1.x).
-         */
-        ready() {
-            this.prepareComponent();
-        },
-
         created() {
             let uri = window.location.href.split('/')
             this.username = uri[uri.length-2]
@@ -88,21 +75,14 @@
          * Prepare the component (Vue 2.x).
          */
         mounted() {
-            this.prepareComponent();
+            this.getRepo();
         },
 
         methods: {
             /**
-             * Prepare the component.
+             * Get repo info 
              */
-            prepareComponent() {
-                this.getUsers();
-            },
-
-            /**
-             * Get all of the OAuth clients for the user.
-             */
-            getUsers() {
+            getRepo() {
                 let config = {
                     headers: {
                         Authorization: 'Bearer ' + token,

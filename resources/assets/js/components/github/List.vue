@@ -16,12 +16,8 @@
             </div>
 
             <div class="card-body">
-                <!-- Current Clients -->
-                <p class="mb-0" v-if="users.data.length === 0">
-                    There is no github users to show at the moment.
-                </p>
 
-                <table class="table table-borderless mb-0" v-if="users.data.length > 0">
+                <table class="table table-borderless mb-0">
                     <thead>
                         <tr>
                             <th width='50px'>ID</th>
@@ -74,39 +70,41 @@
             return {
                 users: [],
                 pagination: {
-                    'current_page': 1
+                    'current_page': 1,
+                    'previous_since': '',
+                    'sinceHistory': [],
+                    'since': ''
                 }
             };
-        },
-
-        /**
-         * Prepare the component (Vue 1.x).
-         */
-        ready() {
-            this.prepareComponent();
         },
 
         /**
          * Prepare the component (Vue 2.x).
          */
         mounted() {
-            this.prepareComponent();
+            // restore pagination, if exists
+            let paginationExists = this.restoreValues()
+
+            if (paginationExists) {
+                this.pagination = paginationExists
+            }
+
+            this.getUsers()
         },
 
         methods: {
-            /**
-             * Prepare the component.
-             */
-            prepareComponent() {
-                this.getUsers();
-            },
-
             paginate() {
                 this.getUsers()
             },
 
+            restoreValues() {
+                let filter = localStorage.getItem('pagination')
+
+                return filter ? JSON.parse(filter) : false
+            },
+
             /**
-             * Get all of the OAuth clients for the user.
+             * Get all users from github
              */
             getUsers() {
                 //const token = vm.$auth.getToken()
@@ -116,36 +114,11 @@
                     }
                 }
 
-                axios.get('/api/github/users?page=' + this.pagination.current_page, config)
+                axios.get('/api/github/users?page=' + this.pagination.current_page + '&since=' + this.pagination.since, config)
                         .then(response => {
-                            this.users = response.data;
-                            console.log(this.users)
+                            this.users = response.data
+                            this.pagination.since = this.users.data[this.users.data.length-1].id
                         });
-            },
-
-            /**
-             * Persist the client to storage using the given form.
-             */
-            persistClient(method, uri, form, modal) {
-                form.errors = [];
-
-                axios[method](uri, form)
-                    .then(response => {
-                        this.getClients();
-
-                        form.name = '';
-                        form.redirect = '';
-                        form.errors = [];
-
-                        $(modal).modal('hide');
-                    })
-                    .catch(error => {
-                        if (typeof error.response.data === 'object') {
-                            form.errors = _.flatten(_.toArray(error.response.data.errors));
-                        } else {
-                            form.errors = ['Something went wrong. Please try again.'];
-                        }
-                    });
             }
 
         }
