@@ -64,8 +64,13 @@
             }
 
             .lightup {
-                font-size:0.9em !important;
-                color:darkslateblue !important;
+                display: block;
+            }
+
+            .footer {
+                position:absolute;
+                bottom:20px;
+                right:20px;
             }
         </style>
     </head>
@@ -86,16 +91,27 @@
                 <div class="title m-b-md">
                     Full-Stack: Lucas Serafim
                 </div>
-
-                <div class="links">
-                    <a href="mailto:lslucas@gmail.com">Email</a>
-                    <a href="https://github.com/lslucas">GITHUB</a>
-                    <a href="https://www.linkedin.com/in/lucasserafim/">LINKEDIN</a>
-                </div>
                 <hr/>
                 <div class="links">
-                    <a href="{{ route('authorize') }}" class='lightup' title='You will need a login ;)'>GET YOUR OUTH TOKEN HERE</a>
+                    <a href="mailto:lslucas@gmail.com" target='_blank'>Email</a>
+                    <a href="https://github.com/lslucas" target='_blank'>GITHUB</a>
+                    <a href="https://www.linkedin.com/in/lucasserafim/" target='_blank'>LINKEDIN</a>
                 </div>
+                <div class="links footer">
+                    <a href="https://documenter.getpostman.com/view/178818/RWEcNfJi#8309d7fc-a6aa-4562-af52-f7bf5d917092" target='_blank' class='lightup'>API Docs</a>
+                    <div class="postman-run-button"
+                        data-postman-action="collection/import"
+                        data-postman-var-1="77c69595ebc5446bc323"></div>
+                        <script type="text/javascript">
+                        (function (p,o,s,t,m,a,n) {
+                            !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+                            !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+                            (n = o.createElement("script")),
+                            (n.id = s+t), (n.async = 1), (n.src = m), n
+                            ));
+                        }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+                        </script>
+                    </div>
             </div>
         </div>
     </body>
