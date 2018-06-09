@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Fotec\Users\Models\User;
+use App\User;
 use Laravel\Passport\Passport;
 
 abstract class PassportTestCase extends TestCase
