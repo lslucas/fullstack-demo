@@ -43,8 +43,7 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate",
-            "@php artisan passport:keys"
+            "@php artisan key:generate"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -52,7 +51,8 @@
         ],
         "compile": [
             "chmod -R 777 storage",
-            "chmod 777 bootstrap/cache"
+            "chmod 777 bootstrap/cache",
+            "@php artisan passport:keys"
         ]
     },
     "config": {
