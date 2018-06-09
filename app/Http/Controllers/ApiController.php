@@ -14,7 +14,7 @@ class ApiController extends Controller
      */
     public function auth(Request $request)
     {
-        if (\App\User::where('email', $request->email)->count()) {
+        if ($request->has(['email', 'password']) && \App\User::where('email', $request->email)->count()) {
 
             $credentials = $request->only('email', 'password');
 
