@@ -29,7 +29,7 @@ Route::group(
     ], function () {
 
         Route::get('users', 'GithubController@index')->name('github.index');
-        Route::get('users/{name}/detail', 'GithubController@show')->name('github.show');
-        Route::get('users/{name}/repos', 'GithubController@repos')->name('github.repos');
+        Route::get('users/{username}', 'GithubController@show')->name('github.show');
+        Route::get('users/{username}/repos', 'GithubController@repos')->name('github.repos');
 
 });

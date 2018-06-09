@@ -30,7 +30,22 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue')
 );
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component(
+    'github-users',
+    require('./components/github/List.vue')
+);
+
+Vue.component(
+    'github-show',
+    require('./components/github/Show.vue')
+);
+
+Vue.component(
+    'github-repos',
+    require('./components/github/Repos.vue')
+);
+
+Vue.component('pagination', require('./components/PaginationComponent.vue'));
 
 const app = new Vue({
     el: '#app'
