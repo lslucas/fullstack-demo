@@ -50,8 +50,8 @@
             "@php artisan package:discover"
         ],
         "compile": [
-            "chmod -R 777 storage/",
-            "chmod 777 bootstrap/cache"
+            "chmod -R 777 app/storage/",
+            "chmod 777 app/bootstrap/cache"
         ]
     },
     "config": {
