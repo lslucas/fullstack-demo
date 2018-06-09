@@ -27,7 +27,7 @@ class GithubApiService
 
         return [
             'code' => $rq->getStatusCode(),
-            'body' => json_decode($rq->getBody()->getContents())
+            'data' => json_decode($rq->getBody()->getContents())
         ];
     }
 }
