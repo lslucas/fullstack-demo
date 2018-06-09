@@ -23,7 +23,16 @@ class GithubApiService
 
     public function get($endpoint)
     {
-        $rq = $this->client->request('GET', $endpoint);
+        // if we have a github access token we shall use it :)
+        $github_token = env('GITHUB_ACCESS_TOKEN');
+        $token = '';
+
+        if ($github_token) {
+            $sep = strpos($endpoint, '?') ? '&' : '?';
+            $token = $sep . 'access_token=' . $github_token;
+        }
+
+        $rq = $this->client->request('GET', $endpoint . $token);
 
         return [
             'code' => $rq->getStatusCode(),
