@@ -38,7 +38,7 @@ Route::group(['prefix' => 'github'], function () {
 
 Route::get('/redirect', function () {
     $query = http_build_query([
-        'client_id' => '3',
+        'client_id' => env('PASSPORT_CLIENT_ID'),
         'redirect_uri' => config('app.url') . '/callback',
         'response_type' => 'code',
         'scope' => '',
@@ -53,8 +53,8 @@ Route::get('/callback', function (\Illuminate\Http\Request $request) {
     $response = $http->post(config('app.url') . '/oauth/token', [
         'form_params' => [
             'grant_type' => 'authorization_code',
-            'client_id' => '3',
-            'client_secret' => 'xXUTrUETSyVRPEKk79aWipCzrmIH31avkDJfnA4h',
+            'client_id' => env('PASSPORT_CLIENT_ID'),
+            'client_secret' => env('PASSPORT_CLIENT_SECRET'),
             'redirect_uri' => config('app.url').'/callback',
             'code' => $request->code,
         ],
