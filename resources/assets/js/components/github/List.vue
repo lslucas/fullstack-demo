@@ -33,17 +33,14 @@
 
                     <tbody>
                         <tr v-for="user in users.data">
-                            <!-- ID -->
                             <td style="vertical-align: middle;">
                                 {{ user.id }}
                             </td>
 
-                            <!-- Name -->
                             <td style="vertical-align: middle;">
                                 {{ user.login }}
                             </td>
 
-                            <!-- Edit Button -->
                             <td style="vertical-align: middle;">
                                 <a class="action-link" :href="'/github/' + user.login">
                                     <ion-icon name="information-circle-outline"></ion-icon>
@@ -51,9 +48,8 @@
                                 </a>
                             </td>
 
-                            <!-- Delete Button -->
                             <td style="vertical-align: middle;">
-                                <a class="action-link text-info" :href="'/github/' + user.login + '/repos'">
+                                <a class="action-link" :href="'/github/' + user.login + '/repos'">
                                     <ion-icon name="logo-github"></ion-icon>
                                     Repos
                                 </a>
@@ -61,6 +57,8 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <pagination :pagination="pagination" :offset="5" @paginate="getUsers()"></pagination>
             </div>
         </div>
 
@@ -74,7 +72,10 @@
          */
         data() {
             return {
-                users: []
+                users: [],
+                pagination: {
+                    'current_page': 1
+                }
             };
         },
 
@@ -100,6 +101,10 @@
                 this.getUsers();
             },
 
+            paginate() {
+                this.getUsers()
+            },
+
             /**
              * Get all of the OAuth clients for the user.
              */
@@ -111,9 +116,10 @@
                     }
                 }
 
-                axios.get('/api/github/users', config)
+                axios.get('/api/github/users?page=' + this.pagination.current_page, config)
                         .then(response => {
                             this.users = response.data;
+                            console.log(this.users)
                         });
             },
 

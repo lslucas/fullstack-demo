@@ -28,9 +28,10 @@ class GithubController extends Controller
      */
     public function index(Request $request)
     {
-        $request->get('since', 135);
+        $page = $request->page ?: 1;
+        $per_page = $request->per_page ?: 20;
 
-        $response = $this->github->get('users?since=' . $request->since);
+        $response = $this->github->get('users?page=' . $page . '&per_page=' . $per_page);
 
         return response()->json($response);
     }
@@ -58,6 +59,5 @@ class GithubController extends Controller
 
         return response()->json($response);
     }
-
 
 }

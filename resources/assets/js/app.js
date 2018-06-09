@@ -45,6 +45,8 @@ Vue.component(
     require('./components/github/Repos.vue')
 );
 
+Vue.component('pagination', require('./components/PaginationComponent.vue'));
+
 const app = new Vue({
     el: '#app'
 });
