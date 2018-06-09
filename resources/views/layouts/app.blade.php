@@ -43,7 +43,10 @@
                             <a class="nav-link" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('github') }}">{{ __('Github') }}</a>
+                            <a class="nav-link" href="{{ route('github') }}">{{ __('Github Users') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://documenter.getpostman.com/view/178818/RWEcNfJi#8309d7fc-a6aa-4562-af52-f7bf5d917092">{{ __('API Docs') }}</a>
                         </li>
                     </ul>
 
