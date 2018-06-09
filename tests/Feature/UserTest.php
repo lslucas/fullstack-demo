@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
 
 class UserTest extends TestCase
 {
@@ -18,7 +19,8 @@ class UserTest extends TestCase
 
     public function testApiAuthorizationSuccessfull()
     {
-        $payload = ['email' => 'admin@admin.com', 'password' => 'secret'];
+        $user = factory(User::class)->create();
+        $payload = ['email' => $user->email, 'password' => 'secret'];
 
         $this->json('POST', 'api/authorize', $payload)
             ->assertStatus(200)
@@ -51,4 +53,18 @@ class UserTest extends TestCase
             ]);
     }
 
+    public function testCreateUser()
+    {
+        $user = factory(User::class)->make();
+
+        $payload = [
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => 'secret',
+            'password_confirmation' => 'secret'
+        ];
+
+        $q = $this->json('POST', 'register', $payload)
+            ->assertStatus(302); //redirect
+    }
 }
