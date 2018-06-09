@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\GithubApiService;
 
 class GithubController extends Controller
 {
+    protected $github;
+
     /**
      * Create a new controller instance.
      *
@@ -14,6 +17,8 @@ class GithubController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+
+        $this->github = new GithubApiService;
     }
 
     /**
@@ -23,7 +28,11 @@ class GithubController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json('github boysss!');
+        $request->get('since', 135);
+
+        $response = $this->github->get('users?since=' . $request->since);
+
+        return response()->json($response);
     }
 
     /**
@@ -33,7 +42,9 @@ class GithubController extends Controller
      */
     public function show(Request $request)
     {
-        return response()->json('github boysss!');
+        $response = $this->github->get('users/' . $request->name);
+
+        return response()->json($response);
     }
 
     /**
@@ -43,7 +54,9 @@ class GithubController extends Controller
      */
     public function repos(Request $request)
     {
-        return response()->json('github boysss!');
+        $response = $this->github->get('users/' . $request->name . '/repos');
+
+        return response()->json($response);
     }
 
 
