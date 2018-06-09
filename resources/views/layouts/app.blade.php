@@ -19,10 +19,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script type='text/javascript'>
+        var token = "{{ session('token') }}";
+    </script>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -32,14 +36,25 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                    @guest
+                    @else
                     <ul class="navbar-nav mr-auto">
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('github') }}">{{ __('Github') }}</a>
+                            </li>
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav mc-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('oauth') }}">- {{ __('oAuth') }}</a>
+                            </li>
+                    </ul>
+                    @endguest
+
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -72,7 +87,19 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
     <script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>

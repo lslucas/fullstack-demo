@@ -14318,23 +14318,9 @@ Vue.component('passport-personal-access-tokens', __webpack_require__(53));
 
 Vue.component('github-users', __webpack_require__(65));
 
-Vue.component('github-show', __webpack_require__(70), {
-    props: {
-        username: {
-            type: String,
-            required: true
-        }
-    }
-});
+Vue.component('github-show', __webpack_require__(70));
 
-Vue.component('github-repos', __webpack_require__(75), {
-    props: {
-        username: {
-            type: String,
-            required: true
-        }
-    }
-});
+Vue.component('github-repos', __webpack_require__(75));
 
 var app = new Vue({
     el: '#app'
@@ -49976,7 +49962,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             var _this = this;
 
             //const token = vm.$auth.getToken()
-            var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijk5Y2I3NDg3ZDMxM2JkNWM4ZjA5ZTMwMWE1YWMxNDBmNmM0YTYzYzI4OGM0MzMwNWEwZGNmMDU0MTQ0NTdlYmY4YWMxYWYwZDc2MDQ2YjZkIn0.eyJhdWQiOiIzIiwianRpIjoiOTljYjc0ODdkMzEzYmQ1YzhmMDllMzAxYTVhYzE0MGY2YzRhNjNjMjg4YzQzMzA1YTBkY2YwNTQxNDQ1N2ViZjhhYzFhZjBkNzYwNDZiNmQiLCJpYXQiOjE1Mjg0OTkyNTcsIm5iZiI6MTUyODQ5OTI1NywiZXhwIjoxNTYwMDM1MjU3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.eKlH10HhC7SETXLTqEA87qdSkR1a5rPYUFo7LbJdvA82NRR8qa_wlyEtCHo_SWJost-XCtqcu3JDdSSO9LWeWig7JZMUG3Sl7y668XdBCwjs37L1PuCT1nbz2jyiYfCYfpH1siR6fZjwUCOt2tr7ePVUzyUb9ahW5oQEpFzU3reB9ugJhzZk7ab1Q03PUYyCJ9v4_K2gFKMVs9lmuyNdeyT_oDsCiiqZ54Z5KUG46gdgI9h8CDghiXimzckTIO37HovtnM3AdKZGicU7_PKUFngnk_NY-zdiu7H7ozhOh-lXguN4Zod1Kc19kaFLz9cDEe9gJHmMY8jdPtjA5M131iLOeG8sUNXpVHtk6IQY67TDnDSFCw4q22fPGk0W3gVi1CQOoltF1lpCSc5zbXcBPj97-iHhyJNVYD99yz2O7D-nIFeQA4NsIujb4MdccwienPO-rX7vRzMaeJ4dctO7-QX1bZtjGPjYuOw65Et4GvuYxcRn5URciS37e_cVOh9-u3nd3KO-hmo00VaTqkwaPlpYeXE1nOS1DiSstEFH783wjpexwv1Rkh2_yXe0q5O4hYr_WXr4Ha0P4L5PIVcRRnCyZff5KqXWbM4vMv0s63PXPGYLwDrPTqFj4WzFk2GEALfYniyTcrwPDyF0pnjpOIXHBTcCjKqxbtCooXBeqT4';
             var config = {
                 headers: {
                     Authorization: 'Bearer ' + token
@@ -50355,8 +50340,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUsers: function getUsers() {
             var _this = this;
 
-            //const token = vm.$auth.getToken()
-            var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijk5Y2I3NDg3ZDMxM2JkNWM4ZjA5ZTMwMWE1YWMxNDBmNmM0YTYzYzI4OGM0MzMwNWEwZGNmMDU0MTQ0NTdlYmY4YWMxYWYwZDc2MDQ2YjZkIn0.eyJhdWQiOiIzIiwianRpIjoiOTljYjc0ODdkMzEzYmQ1YzhmMDllMzAxYTVhYzE0MGY2YzRhNjNjMjg4YzQzMzA1YTBkY2YwNTQxNDQ1N2ViZjhhYzFhZjBkNzYwNDZiNmQiLCJpYXQiOjE1Mjg0OTkyNTcsIm5iZiI6MTUyODQ5OTI1NywiZXhwIjoxNTYwMDM1MjU3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.eKlH10HhC7SETXLTqEA87qdSkR1a5rPYUFo7LbJdvA82NRR8qa_wlyEtCHo_SWJost-XCtqcu3JDdSSO9LWeWig7JZMUG3Sl7y668XdBCwjs37L1PuCT1nbz2jyiYfCYfpH1siR6fZjwUCOt2tr7ePVUzyUb9ahW5oQEpFzU3reB9ugJhzZk7ab1Q03PUYyCJ9v4_K2gFKMVs9lmuyNdeyT_oDsCiiqZ54Z5KUG46gdgI9h8CDghiXimzckTIO37HovtnM3AdKZGicU7_PKUFngnk_NY-zdiu7H7ozhOh-lXguN4Zod1Kc19kaFLz9cDEe9gJHmMY8jdPtjA5M131iLOeG8sUNXpVHtk6IQY67TDnDSFCw4q22fPGk0W3gVi1CQOoltF1lpCSc5zbXcBPj97-iHhyJNVYD99yz2O7D-nIFeQA4NsIujb4MdccwienPO-rX7vRzMaeJ4dctO7-QX1bZtjGPjYuOw65Et4GvuYxcRn5URciS37e_cVOh9-u3nd3KO-hmo00VaTqkwaPlpYeXE1nOS1DiSstEFH783wjpexwv1Rkh2_yXe0q5O4hYr_WXr4Ha0P4L5PIVcRRnCyZff5KqXWbM4vMv0s63PXPGYLwDrPTqFj4WzFk2GEALfYniyTcrwPDyF0pnjpOIXHBTcCjKqxbtCooXBeqT4';
             var config = {
                 headers: {
                     Authorization: 'Bearer ' + token
@@ -50394,12 +50377,9 @@ var render = function() {
             }
           },
           [
-            _c("h3", [
-              _vm._v(
-                "\n                    User: " +
-                  _vm._s(_vm.user.name) +
-                  "\n                "
-              )
+            _c("span", [
+              _vm._v("\n                    User "),
+              _c("strong", [_vm._v(_vm._s(_vm.user.name))])
             ]),
             _vm._v(" "),
             _c(
@@ -50683,8 +50663,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUsers: function getUsers() {
             var _this = this;
 
-            //const token = vm.$auth.getToken()
-            var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijk5Y2I3NDg3ZDMxM2JkNWM4ZjA5ZTMwMWE1YWMxNDBmNmM0YTYzYzI4OGM0MzMwNWEwZGNmMDU0MTQ0NTdlYmY4YWMxYWYwZDc2MDQ2YjZkIn0.eyJhdWQiOiIzIiwianRpIjoiOTljYjc0ODdkMzEzYmQ1YzhmMDllMzAxYTVhYzE0MGY2YzRhNjNjMjg4YzQzMzA1YTBkY2YwNTQxNDQ1N2ViZjhhYzFhZjBkNzYwNDZiNmQiLCJpYXQiOjE1Mjg0OTkyNTcsIm5iZiI6MTUyODQ5OTI1NywiZXhwIjoxNTYwMDM1MjU3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.eKlH10HhC7SETXLTqEA87qdSkR1a5rPYUFo7LbJdvA82NRR8qa_wlyEtCHo_SWJost-XCtqcu3JDdSSO9LWeWig7JZMUG3Sl7y668XdBCwjs37L1PuCT1nbz2jyiYfCYfpH1siR6fZjwUCOt2tr7ePVUzyUb9ahW5oQEpFzU3reB9ugJhzZk7ab1Q03PUYyCJ9v4_K2gFKMVs9lmuyNdeyT_oDsCiiqZ54Z5KUG46gdgI9h8CDghiXimzckTIO37HovtnM3AdKZGicU7_PKUFngnk_NY-zdiu7H7ozhOh-lXguN4Zod1Kc19kaFLz9cDEe9gJHmMY8jdPtjA5M131iLOeG8sUNXpVHtk6IQY67TDnDSFCw4q22fPGk0W3gVi1CQOoltF1lpCSc5zbXcBPj97-iHhyJNVYD99yz2O7D-nIFeQA4NsIujb4MdccwienPO-rX7vRzMaeJ4dctO7-QX1bZtjGPjYuOw65Et4GvuYxcRn5URciS37e_cVOh9-u3nd3KO-hmo00VaTqkwaPlpYeXE1nOS1DiSstEFH783wjpexwv1Rkh2_yXe0q5O4hYr_WXr4Ha0P4L5PIVcRRnCyZff5KqXWbM4vMv0s63PXPGYLwDrPTqFj4WzFk2GEALfYniyTcrwPDyF0pnjpOIXHBTcCjKqxbtCooXBeqT4';
             var config = {
                 headers: {
                     Authorization: 'Bearer ' + token
@@ -50720,12 +50698,9 @@ var render = function() {
             }
           },
           [
-            _c("h3", [
-              _vm._v(
-                "\n                    Repositories of " +
-                  _vm._s(_vm.user.login) +
-                  "\n                "
-              )
+            _c("span", [
+              _vm._v("\n                    Repositories of "),
+              _c("strong", [_vm._v(_vm._s(_vm.user.login))])
             ]),
             _vm._v(" "),
             _c(
@@ -50784,10 +50759,10 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { "vertical-align": "middle" } }, [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(repo.html_url) +
-                          "\n                        "
+                      _c(
+                        "a",
+                        { attrs: { href: repo.html_url, target: "_blank" } },
+                        [_vm._v(_vm._s(repo.html_url))]
                       )
                     ])
                   ])

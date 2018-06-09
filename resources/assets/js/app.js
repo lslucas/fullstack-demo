@@ -37,26 +37,12 @@ Vue.component(
 
 Vue.component(
     'github-show',
-    require('./components/github/Show.vue'), {
-        props: {
-            username: {
-                type: String,
-                required: true
-            }
-        }
-    }
+    require('./components/github/Show.vue')
 );
 
 Vue.component(
     'github-repos',
-    require('./components/github/Repos.vue'), {
-        props: {
-            username: {
-                type: String,
-                required: true
-            }
-        }
-    }
+    require('./components/github/Repos.vue')
 );
 
 const app = new Vue({
