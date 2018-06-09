@@ -39,18 +39,18 @@
                     @guest
                     @else
                     <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('github') }}">{{ __('Github') }}</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('github') }}">{{ __('Github') }}</a>
+                        </li>
                     </ul>
 
                     <ul class="navbar-nav mc-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('oauth') }}">- {{ __('oAuth') }}</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('oauth') }}" style='color:rgba(255, 255, 255, 0.1)'>- {{ __('oAuth') }}</a>
+                        </li>
                     </ul>
                     @endguest
 
