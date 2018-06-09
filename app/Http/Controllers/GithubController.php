@@ -42,7 +42,7 @@ class GithubController extends Controller
      */
     public function show(Request $request)
     {
-        $response = $this->github->get('users/' . $request->name);
+        $response = $this->github->get('users/' . $request->username);
 
         return response()->json($response);
     }
@@ -54,7 +54,7 @@ class GithubController extends Controller
      */
     public function repos(Request $request)
     {
-        $response = $this->github->get('users/' . $request->name . '/repos');
+        $response = $this->github->get('users/' . $request->username . '/repos');
 
         return response()->json($response);
     }
