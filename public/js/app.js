@@ -14316,6 +14316,26 @@ Vue.component('passport-authorized-clients', __webpack_require__(48));
 
 Vue.component('passport-personal-access-tokens', __webpack_require__(53));
 
+Vue.component('github-users', __webpack_require__(65));
+
+Vue.component('github-show', __webpack_require__(70), {
+    props: {
+        username: {
+            type: String,
+            required: true
+        }
+    }
+});
+
+Vue.component('github-repos', __webpack_require__(75), {
+    props: {
+        username: {
+            type: String,
+            required: true
+        }
+    }
+});
+
 Vue.component('example-component', __webpack_require__(58));
 
 var app = new Vue({
@@ -49858,6 +49878,1069 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(66)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(68)
+/* template */
+var __vue_template__ = __webpack_require__(69)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-380573ba"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/github/List.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-380573ba", Component.options)
+  } else {
+    hotAPI.reload("data-v-380573ba", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(67);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("30320950", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-380573ba\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./List.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-380573ba\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./List.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.action-link[data-v-380573ba] {\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    /*
+     * The component's data.
+     */
+    data: function data() {
+        return {
+            users: []
+        };
+    },
+
+
+    /**
+     * Prepare the component (Vue 1.x).
+     */
+    ready: function ready() {
+        this.prepareComponent();
+    },
+
+
+    /**
+     * Prepare the component (Vue 2.x).
+     */
+    mounted: function mounted() {
+        this.prepareComponent();
+    },
+
+
+    methods: {
+        /**
+         * Prepare the component.
+         */
+        prepareComponent: function prepareComponent() {
+            this.getUsers();
+        },
+
+
+        /**
+         * Get all of the OAuth clients for the user.
+         */
+        getUsers: function getUsers() {
+            var _this = this;
+
+            //const token = vm.$auth.getToken()
+            var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijk5Y2I3NDg3ZDMxM2JkNWM4ZjA5ZTMwMWE1YWMxNDBmNmM0YTYzYzI4OGM0MzMwNWEwZGNmMDU0MTQ0NTdlYmY4YWMxYWYwZDc2MDQ2YjZkIn0.eyJhdWQiOiIzIiwianRpIjoiOTljYjc0ODdkMzEzYmQ1YzhmMDllMzAxYTVhYzE0MGY2YzRhNjNjMjg4YzQzMzA1YTBkY2YwNTQxNDQ1N2ViZjhhYzFhZjBkNzYwNDZiNmQiLCJpYXQiOjE1Mjg0OTkyNTcsIm5iZiI6MTUyODQ5OTI1NywiZXhwIjoxNTYwMDM1MjU3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.eKlH10HhC7SETXLTqEA87qdSkR1a5rPYUFo7LbJdvA82NRR8qa_wlyEtCHo_SWJost-XCtqcu3JDdSSO9LWeWig7JZMUG3Sl7y668XdBCwjs37L1PuCT1nbz2jyiYfCYfpH1siR6fZjwUCOt2tr7ePVUzyUb9ahW5oQEpFzU3reB9ugJhzZk7ab1Q03PUYyCJ9v4_K2gFKMVs9lmuyNdeyT_oDsCiiqZ54Z5KUG46gdgI9h8CDghiXimzckTIO37HovtnM3AdKZGicU7_PKUFngnk_NY-zdiu7H7ozhOh-lXguN4Zod1Kc19kaFLz9cDEe9gJHmMY8jdPtjA5M131iLOeG8sUNXpVHtk6IQY67TDnDSFCw4q22fPGk0W3gVi1CQOoltF1lpCSc5zbXcBPj97-iHhyJNVYD99yz2O7D-nIFeQA4NsIujb4MdccwienPO-rX7vRzMaeJ4dctO7-QX1bZtjGPjYuOw65Et4GvuYxcRn5URciS37e_cVOh9-u3nd3KO-hmo00VaTqkwaPlpYeXE1nOS1DiSstEFH783wjpexwv1Rkh2_yXe0q5O4hYr_WXr4Ha0P4L5PIVcRRnCyZff5KqXWbM4vMv0s63PXPGYLwDrPTqFj4WzFk2GEALfYniyTcrwPDyF0pnjpOIXHBTcCjKqxbtCooXBeqT4';
+            var config = {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            };
+
+            axios.get('/api/github/users', config).then(function (response) {
+                _this.users = response.data;
+            });
+        },
+
+
+        /**
+         * Persist the client to storage using the given form.
+         */
+        persistClient: function persistClient(method, uri, form, modal) {
+            var _this2 = this;
+
+            form.errors = [];
+
+            axios[method](uri, form).then(function (response) {
+                _this2.getClients();
+
+                form.name = '';
+                form.redirect = '';
+                form.errors = [];
+
+                $(modal).modal('hide');
+            }).catch(function (error) {
+                if (_typeof(error.response.data) === 'object') {
+                    form.errors = _.flatten(_.toArray(error.response.data.errors));
+                } else {
+                    form.errors = ['Something went wrong. Please try again.'];
+                }
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card card-default" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _vm.users.data.length === 0
+          ? _c("p", { staticClass: "mb-0" }, [
+              _vm._v(
+                "\n                There is no github users to show at the moment.\n            "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.users.data.length > 0
+          ? _c("table", { staticClass: "table table-borderless mb-0" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.users.data, function(user) {
+                  return _c("tr", [
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(user.id) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(user.login) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "action-link",
+                          attrs: { href: "/github/" + user.login }
+                        },
+                        [
+                          _c("ion-icon", {
+                            attrs: { name: "information-circle-outline" }
+                          }),
+                          _vm._v(
+                            "\n                                Details\n                            "
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "action-link text-info",
+                          attrs: { href: "/github/" + user.login + "/repos" }
+                        },
+                        [
+                          _c("ion-icon", { attrs: { name: "logo-github" } }),
+                          _vm._v(
+                            "\n                                Repos\n                            "
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                })
+              )
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c(
+        "div",
+        {
+          staticStyle: {
+            display: "flex",
+            "justify-content": "space-between",
+            "align-items": "center"
+          }
+        },
+        [
+          _c("span", [
+            _vm._v("\n                    Github Users\n                ")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { width: "50px" } }, [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Login")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "100px" } }),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "100px" } })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-380573ba", module.exports)
+  }
+}
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(71)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(73)
+/* template */
+var __vue_template__ = __webpack_require__(74)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-7f962902"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/github/Show.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7f962902", Component.options)
+  } else {
+    hotAPI.reload("data-v-7f962902", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(72);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("69769000", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7f962902\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Show.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7f962902\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Show.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.action-link[data-v-7f962902] {\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    /*
+     * The component's data.
+     */
+    data: function data() {
+        return {
+            username: '',
+            user: []
+        };
+    },
+
+
+    /**
+     * Prepare the component (Vue 1.x).
+     */
+    ready: function ready() {
+        this.prepareComponent();
+    },
+    created: function created() {
+        var uri = window.location.href.split('/');
+        this.username = uri[uri.length - 1];
+    },
+
+
+    /**
+     * Prepare the component (Vue 2.x).
+     */
+    mounted: function mounted() {
+        this.prepareComponent();
+    },
+
+
+    methods: {
+        /**
+         * Prepare the component.
+         */
+        prepareComponent: function prepareComponent() {
+            this.getUsers();
+        },
+
+
+        /**
+         * Get all of the OAuth clients for the user.
+         */
+        getUsers: function getUsers() {
+            var _this = this;
+
+            //const token = vm.$auth.getToken()
+            var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijk5Y2I3NDg3ZDMxM2JkNWM4ZjA5ZTMwMWE1YWMxNDBmNmM0YTYzYzI4OGM0MzMwNWEwZGNmMDU0MTQ0NTdlYmY4YWMxYWYwZDc2MDQ2YjZkIn0.eyJhdWQiOiIzIiwianRpIjoiOTljYjc0ODdkMzEzYmQ1YzhmMDllMzAxYTVhYzE0MGY2YzRhNjNjMjg4YzQzMzA1YTBkY2YwNTQxNDQ1N2ViZjhhYzFhZjBkNzYwNDZiNmQiLCJpYXQiOjE1Mjg0OTkyNTcsIm5iZiI6MTUyODQ5OTI1NywiZXhwIjoxNTYwMDM1MjU3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.eKlH10HhC7SETXLTqEA87qdSkR1a5rPYUFo7LbJdvA82NRR8qa_wlyEtCHo_SWJost-XCtqcu3JDdSSO9LWeWig7JZMUG3Sl7y668XdBCwjs37L1PuCT1nbz2jyiYfCYfpH1siR6fZjwUCOt2tr7ePVUzyUb9ahW5oQEpFzU3reB9ugJhzZk7ab1Q03PUYyCJ9v4_K2gFKMVs9lmuyNdeyT_oDsCiiqZ54Z5KUG46gdgI9h8CDghiXimzckTIO37HovtnM3AdKZGicU7_PKUFngnk_NY-zdiu7H7ozhOh-lXguN4Zod1Kc19kaFLz9cDEe9gJHmMY8jdPtjA5M131iLOeG8sUNXpVHtk6IQY67TDnDSFCw4q22fPGk0W3gVi1CQOoltF1lpCSc5zbXcBPj97-iHhyJNVYD99yz2O7D-nIFeQA4NsIujb4MdccwienPO-rX7vRzMaeJ4dctO7-QX1bZtjGPjYuOw65Et4GvuYxcRn5URciS37e_cVOh9-u3nd3KO-hmo00VaTqkwaPlpYeXE1nOS1DiSstEFH783wjpexwv1Rkh2_yXe0q5O4hYr_WXr4Ha0P4L5PIVcRRnCyZff5KqXWbM4vMv0s63PXPGYLwDrPTqFj4WzFk2GEALfYniyTcrwPDyF0pnjpOIXHBTcCjKqxbtCooXBeqT4';
+            var config = {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            };
+
+            axios.get('/api/github/users/' + this.username, config).then(function (response) {
+                _this.user = response.data.data;
+
+                var date = new Date(_this.user.created_at);
+                _this.user.creation_date = date.toLocaleString();
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card card-default" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c(
+          "div",
+          {
+            staticStyle: {
+              display: "flex",
+              "justify-content": "space-between",
+              "align-items": "center"
+            }
+          },
+          [
+            _c("h3", [
+              _vm._v(
+                "\n                    User: " +
+                  _vm._s(_vm.user.name) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              { staticClass: "action-link", attrs: { href: "/github" } },
+              [_vm._v("\n                    All Users \n                ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "action-link",
+                attrs: { href: "/github/" + _vm.user.login + "/repos" }
+              },
+              [_vm._v("\n                    Repos\n                ")]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _vm.user.length === 0
+          ? _c("p", { staticClass: "mb-0" }, [
+              _vm._v("\n                This user has no info.\n            ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.user
+          ? _c("table", { staticClass: "table table-borderless mb-0" }, [
+              _c("tbody", [
+                _c("tr", [
+                  _c("th", { attrs: { width: "50px" } }, [_vm._v("ID")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.user.id))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("Login")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.user.login))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("Profile URL")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "a",
+                      { attrs: { href: _vm.user.html_url, target: "_blank" } },
+                      [_vm._v(_vm._s(_vm.user.html_url))]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("Date of registration (local)")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.user.creation_date))])
+                ])
+              ])
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7f962902", module.exports)
+  }
+}
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(76)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(78)
+/* template */
+var __vue_template__ = __webpack_require__(79)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-5b9bcde8"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/github/Repos.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5b9bcde8", Component.options)
+  } else {
+    hotAPI.reload("data-v-5b9bcde8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(77);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("276171eb", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5b9bcde8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Repos.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5b9bcde8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Repos.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.action-link[data-v-5b9bcde8] {\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    /*
+     * The component's data.
+     */
+    data: function data() {
+        return {
+            username: '',
+            repos: [],
+            user: []
+        };
+    },
+
+
+    /**
+     * Prepare the component (Vue 1.x).
+     */
+    ready: function ready() {
+        this.prepareComponent();
+    },
+    created: function created() {
+        var uri = window.location.href.split('/');
+        this.username = uri[uri.length - 2];
+    },
+
+
+    /**
+     * Prepare the component (Vue 2.x).
+     */
+    mounted: function mounted() {
+        this.prepareComponent();
+    },
+
+
+    methods: {
+        /**
+         * Prepare the component.
+         */
+        prepareComponent: function prepareComponent() {
+            this.getUsers();
+        },
+
+
+        /**
+         * Get all of the OAuth clients for the user.
+         */
+        getUsers: function getUsers() {
+            var _this = this;
+
+            //const token = vm.$auth.getToken()
+            var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijk5Y2I3NDg3ZDMxM2JkNWM4ZjA5ZTMwMWE1YWMxNDBmNmM0YTYzYzI4OGM0MzMwNWEwZGNmMDU0MTQ0NTdlYmY4YWMxYWYwZDc2MDQ2YjZkIn0.eyJhdWQiOiIzIiwianRpIjoiOTljYjc0ODdkMzEzYmQ1YzhmMDllMzAxYTVhYzE0MGY2YzRhNjNjMjg4YzQzMzA1YTBkY2YwNTQxNDQ1N2ViZjhhYzFhZjBkNzYwNDZiNmQiLCJpYXQiOjE1Mjg0OTkyNTcsIm5iZiI6MTUyODQ5OTI1NywiZXhwIjoxNTYwMDM1MjU3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.eKlH10HhC7SETXLTqEA87qdSkR1a5rPYUFo7LbJdvA82NRR8qa_wlyEtCHo_SWJost-XCtqcu3JDdSSO9LWeWig7JZMUG3Sl7y668XdBCwjs37L1PuCT1nbz2jyiYfCYfpH1siR6fZjwUCOt2tr7ePVUzyUb9ahW5oQEpFzU3reB9ugJhzZk7ab1Q03PUYyCJ9v4_K2gFKMVs9lmuyNdeyT_oDsCiiqZ54Z5KUG46gdgI9h8CDghiXimzckTIO37HovtnM3AdKZGicU7_PKUFngnk_NY-zdiu7H7ozhOh-lXguN4Zod1Kc19kaFLz9cDEe9gJHmMY8jdPtjA5M131iLOeG8sUNXpVHtk6IQY67TDnDSFCw4q22fPGk0W3gVi1CQOoltF1lpCSc5zbXcBPj97-iHhyJNVYD99yz2O7D-nIFeQA4NsIujb4MdccwienPO-rX7vRzMaeJ4dctO7-QX1bZtjGPjYuOw65Et4GvuYxcRn5URciS37e_cVOh9-u3nd3KO-hmo00VaTqkwaPlpYeXE1nOS1DiSstEFH783wjpexwv1Rkh2_yXe0q5O4hYr_WXr4Ha0P4L5PIVcRRnCyZff5KqXWbM4vMv0s63PXPGYLwDrPTqFj4WzFk2GEALfYniyTcrwPDyF0pnjpOIXHBTcCjKqxbtCooXBeqT4';
+            var config = {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            };
+
+            axios.get('/api/github/users/' + this.username + '/repos', config).then(function (response) {
+                _this.repos = response.data;
+                _this.user = _this.repos.data[0].owner;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card card-default" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c(
+          "div",
+          {
+            staticStyle: {
+              display: "flex",
+              "justify-content": "space-between",
+              "align-items": "center"
+            }
+          },
+          [
+            _c("h3", [
+              _vm._v(
+                "\n                    Repositories of " +
+                  _vm._s(_vm.user.login) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              { staticClass: "action-link", attrs: { href: "/github" } },
+              [_vm._v("\n                    All Users \n                ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "action-link",
+                attrs: { href: "/github/" + _vm.user.login }
+              },
+              [
+                _vm._v(
+                  "\n                    Details of " +
+                    _vm._s(_vm.user.login) +
+                    "\n                "
+                )
+              ]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _vm.repos.data.length === 0
+          ? _c("p", { staticClass: "mb-0" }, [
+              _vm._v("\n                This user has no repos.\n            ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.repos.data.length > 0
+          ? _c("table", { staticClass: "table table-borderless mb-0" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.repos.data, function(repo) {
+                  return _c("tr", [
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(repo.id) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(repo.full_name) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(repo.html_url) +
+                          "\n                        "
+                      )
+                    ])
+                  ])
+                })
+              )
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { width: "50px" } }, [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("URL")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5b9bcde8", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

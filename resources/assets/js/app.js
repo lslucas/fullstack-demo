@@ -30,6 +30,35 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue')
 );
 
+Vue.component(
+    'github-users',
+    require('./components/github/List.vue')
+);
+
+Vue.component(
+    'github-show',
+    require('./components/github/Show.vue'), {
+        props: {
+            username: {
+                type: String,
+                required: true
+            }
+        }
+    }
+);
+
+Vue.component(
+    'github-repos',
+    require('./components/github/Repos.vue'), {
+        props: {
+            username: {
+                type: String,
+                required: true
+            }
+        }
+    }
+);
+
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({

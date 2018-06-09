@@ -15,10 +15,14 @@ Route::get('login', function () {
     return view('welcome');
 });
 
-
-
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'github'], function () {
+    Route::get('', function () { return view('github.index'); });
+    Route::get('{username}', function () { return view('github.show'); });
+    Route::get('{username}/repos', function () { return view('github.repos'); });
 });
 
 Auth::routes();
