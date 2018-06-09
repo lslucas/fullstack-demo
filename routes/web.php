@@ -19,15 +19,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+// homepage of dashboard
+Route::get('/home', 'HomeController@index')->name('home');
+
+// oauth
+Route::get('/oauth', function () {
+    return view('oauth');
+})->name('oauth');
+
+// github
 Route::group(['prefix' => 'github'], function () {
-    Route::get('', function () { return view('github.index'); });
+    Route::get('', function () { return view('github.index'); })->name('github');
     Route::get('{username}', function () { return view('github.show'); });
     Route::get('{username}/repos', function () { return view('github.repos'); });
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/redirect', function () {
     $query = http_build_query([
@@ -53,5 +60,12 @@ Route::get('/callback', function (\Illuminate\Http\Request $request) {
         ],
     ]);
 
-    return json_decode((string) $response->getBody(), true);
+    $body = (string) $response->getBody();
+
+    $obj = json_decode($body);
+
+    // store un session to be used later by the front
+    $request->session()->put('token', $obj->access_token);
+
+    return redirect()->route('home');
 });
